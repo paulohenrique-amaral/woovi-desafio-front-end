@@ -1,6 +1,8 @@
+import PaymentMethod from './pages/PaymentMethod/PaymentMethod';
+
 function App() {
   return (
-    <h2>woovi</h2>
+    <PaymentMethod />
   );
 }
 
