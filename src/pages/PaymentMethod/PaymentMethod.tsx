@@ -1,7 +1,10 @@
+import { useContext } from 'react';
 import { Container, Grid, Box, Typography } from '@mui/material';
+import Context from '../../context/Context';
 import Header from '../../component/Header/Header';
 
 function PaymentMethod() {
+  const { total, setTotal } = useContext(Context);
   return (
     <Container maxWidth="lg">
       <Grid container>
@@ -22,7 +25,7 @@ function PaymentMethod() {
 
           } }
         >
-          <Typography variant="h6">
+          <Typography variant="h6" style={ { fontWeight: 'bold' } }>
             João como você quer pagar?
           </Typography>
         </Grid>
