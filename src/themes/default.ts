@@ -22,6 +22,9 @@ const defaultTheme = createTheme({
       secondary: '#AFAFAF',
     },
   },
+  typography: {
+    fontFamily: 'Nunito, Arial, sans-serif',
+  },
 });
 
 const theme = responsiveFontSizes(defaultTheme);
