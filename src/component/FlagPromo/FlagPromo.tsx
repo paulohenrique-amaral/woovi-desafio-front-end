@@ -17,7 +17,6 @@ const DivStyled = styled('div')(({ theme }) => ({
   borderRadius: '8px 0 0 8px',
   color: theme.palette.secondary.contrastText,
   fontSize: '10px',
-  // letterSpacing: '0.2em',
   clipPath: 'polygon(100% 0%, 95% 49%, 100% 100%, 0 100%, 0% 50%, 0 0)',
 }));
 
