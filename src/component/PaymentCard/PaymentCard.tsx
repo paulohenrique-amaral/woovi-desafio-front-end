@@ -1,50 +1,35 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
-import { Box, Typography, styled } from '@mui/material';
-import FormControlLabel from '@mui/material/FormControlLabel';
+import { Box, Typography, styled, ButtonBase, Grid } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import theme from '../../themes/default';
+import FlagPromo from '../FlagPromo/FlagPromo';
 
 const style = {
   p: 0,
   width: '100%',
-  maxWidth: 360,
+  // maxWidth: 360,
   borderRadius: 2,
   border: '1px solid',
   borderColor: theme.palette.background.paper,
   backgroundColor: theme.palette.background.default,
 };
 
-// const ListItemStyled = styled(ListItem)(({ theme: styledTheme }) => ({
-//   border: '1px solid',
-//   borderColor: selected === value
-//     ? theme.palette.primary.main
-//     : theme.palette.background.paper,
-//   backgroundColor: selected === value
-//     ? theme.palette.action.selected
-//     : theme.palette.background.default,
-// }));
-
-function calculateInstallments(total, numInstallments) {
+function calculateInstallments(total: number, numInstallments: number) {
   const installments = [];
   for (let i = 1; i <= numInstallments; i += 1) {
-    const installmentValue = (total / i).toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
-    installments.push(`${i}x ${installmentValue}`);
+    const installmentValue = (total / i)
+    installments.push(installmentValue);
   }
   return installments;
 }
 
-function getBorderRadius(index, length) {
+function getBorderRadius(index: number, length: number) {
   if (length === 1) {
     return '5px';
   } if (index === 0) {
@@ -55,17 +40,25 @@ function getBorderRadius(index, length) {
   return '0';
 }
 
-function PaymentCard() {
-  const [selected, setSelected] = useState(null);
-  const total = 30500; // Total da compra
-  const numInstallments = 7; // Número de parcelas
+type PaymentCardProps = {
+  total: number;
+  numInstallments: number;
+  firstIndex: number;
+  lastIndex: number;
+  bestOption: number;
+  selected: number | null;
+  setSelected: React.Dispatch<React.SetStateAction<number | null>>;
+  handleToggle: (value: number) => void;
+};
+
+function PaymentCard({handleToggle, total, numInstallments, firstIndex, lastIndex, bestOption, selected, setSelected}: PaymentCardProps) {
+  const singleInstallment = lastIndex <= 1;
   const installmentOptions = calculateInstallments(total, numInstallments);
 
-  const handleToggle = (value: any) => () => {
-    setSelected(selected === value ? null : value);
-  };
+  console.log('selected:', selected);  
+  
   return (
-    <Box sx={ { position: 'relative', width: '100%', maxWidth: 360 } }>
+    <Box sx={ { position: 'relative', width: '100%', maxWidth: 460 } }>
       <Box
         sx={ {
           position: 'absolute',
@@ -80,37 +73,92 @@ function PaymentCard() {
           zIndex: 1,
         } }
       >
-        PIX
+        {singleInstallment ? 'Pix' : 'Pix Parcelado'}
       </Box>
       <List sx={ { ...style } } aria-label="opções de parcelamento">
-        {installmentOptions.map((value, index) => (
+        {installmentOptions.slice(firstIndex, lastIndex).map((value, index) => (
           <div key={ value }>
             {index !== 0 && <Divider component="li" />}
-            <ListItem
-              sx={ {
-                border: '1px solid',
-                // borderRadius: 2,
+            <ButtonBase
+              component="div"
+              style={ { 
+                padding: '10px',
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'flex-start',
+                border: selected === value ? '2px solid' : '1px solid',
                 borderColor: selected === value
                   ? theme.palette.primary.main : theme.palette.background.paper,
                 backgroundColor: selected === value
-                  ? theme.palette.action.selected : theme.palette.background.default,
+                  ? 'rgba(3, 214, 157, 0.1)' : theme.palette.background.default,
                 borderRadius: getBorderRadius(index, installmentOptions.length),
               } }
-              secondaryAction={
-                <Checkbox
-                  edge="end"
-                  onChange={ handleToggle(value) }
-                  checked={ selected === value }
-                  inputProps={ { 'aria-labelledby': `checkbox-list-label-${value}` } }
-                  icon={ <RadioButtonUncheckedIcon /> }
-                  checkedIcon={ <CheckCircleIcon /> }
-                  sx={ { '& .MuiSvgIcon-root': { fontSize: 28 } } }
-                />
-            }
-            >
-              <ListItemText id={ `checkbox-list-label-${value}` } primary={ value } />
-            </ListItem>
-            {/* <Divider component="li" /> */}
+              onClick={ () => handleToggle(value) }
+              >
+                <ListItem
+                  sx={ { paddingBottom: '0px' } }
+                  secondaryAction={
+                    <Checkbox
+                      edge="end"
+                      onChange={ () => handleToggle(value) }
+                      checked={ selected === value }
+                      inputProps={ { 'aria-labelledby': `checkbox-list-label-${value}` } }
+                      icon={ <RadioButtonUncheckedIcon /> }
+                      checkedIcon={ <CheckCircleIcon /> }
+                      sx={ { '& .MuiSvgIcon-root': { fontSize: 28 } } }
+                    />
+                  }
+                >
+                  <Grid sx={ {display: 'flex', flexDirection: 'column'} }>
+                    <Box sx={ { display: 'flex', gap: '.5rem' } }>
+                      <Typography sx={ { fontWeight: 'bold' } }>
+                        {`${index + firstIndex + 1}x`}
+                      </Typography>
+                      <Typography>
+                      {value.toLocaleString('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL',
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                      </Typography>                    
+                    </Box>
+                    {singleInstallment && (
+                      <Typography sx={ { fontSize: '.6rem', color: theme.palette.primary.main } }>
+                        Ganhe 3% de Caskback
+                      </Typography>
+                    )}
+                  </Grid>
+                </ListItem>
+                <Box sx={ { width: '100%', paddingLeft: '15px' } }>
+                  <Typography sx={ { fontSize: '.6rem', color: theme.palette.text.secondary } }>
+                  {`Total: ${((index + firstIndex + 1) * value).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`}
+                  </Typography>
+                </Box>            
+                <Box sx={ { width: '100%' } }>
+                  {singleInstallment && (
+                    <FlagPromo>
+                      <span style={ { fontWeight: 'bold', fontSize: '.6rem' } }>
+                        🤑 R$ 300,00
+                      </span>
+                      <span>
+                        de volta no seu Pix na hora
+                      </span>
+                    </FlagPromo>
+                  )}
+                  {(index + firstIndex + 1) === bestOption && (
+                    <FlagPromo>
+                      <span style={ { fontWeight: 'bold', fontSize: '.6rem' } }>
+                        -3% de juros:
+                      </span>
+                      <span>
+                        Melhor opção de parcelamento
+                      </span>
+                    </FlagPromo>
+                  )}
+                </Box>
+              </ButtonBase>
           </div>
         ))}
       </List>
