@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { Container, Grid, Box, Typography } from '@mui/material';
 import Context from '../../context/Context';
 import Header from '../../component/Header/Header';
+import PaymentCard from '../../component/PaymentCard/PaymentCard';
 
 function PaymentMethod() {
   const { total, setTotal } = useContext(Context);
@@ -31,7 +32,7 @@ function PaymentMethod() {
         </Grid>
         <Grid item xs={ 12 }>
           <Box>
-            box preço
+            <PaymentCard />
           </Box>
         </Grid>
         <Grid item xs={ 12 }>
