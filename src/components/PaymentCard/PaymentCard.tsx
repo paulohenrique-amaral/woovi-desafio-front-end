@@ -55,7 +55,7 @@ function PaymentCard({handleToggle, total, numInstallments, firstIndex, lastInde
   const singleInstallment = lastIndex <= 1;
   const installmentOptions = calculateInstallments(total, numInstallments);
 
-  console.log('selected:', selected);  
+  console.log('selected:', selected);
   
   return (
     <Box sx={ { position: 'relative', width: '100%', maxWidth: 460 } }>

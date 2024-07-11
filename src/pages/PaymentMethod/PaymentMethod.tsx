@@ -1,8 +1,8 @@
 import { useContext, useState } from 'react';
 import { Container, Grid, Box, Typography } from '@mui/material';
 import Context from '../../context/Context';
-import Header from '../../component/Header/Header';
-import PaymentCard from '../../component/PaymentCard/PaymentCard';
+import Header from '../../components/Header/Header';
+import PaymentCard from '../../components/PaymentCard/PaymentCard';
 
 function PaymentMethod() {
   const [selected, setSelected] = useState<number | null>(null);
