@@ -1,19 +1,13 @@
-import { Box, Typography, styled, ButtonBase, Grid } from '@mui/material';
-
-const FooterStyled = styled('footer')(({ theme }) => ({
-  position: 'fixed',
-  bottom: 0,
-  width: '100%',
-  backgroundColor: theme.palette.secondary.main,
-  display: 'flex',
-  justifyContent: 'flex-start',
-  alignItems: 'baseline',
-}));
+import footerImg from '../../assets/footerImg.svg';
+import { FooterStyled, StyledImg } from './FooterStyled';
 
 function Footer() {
   return (
     <FooterStyled>
-      <p>Footer</p>
+      <StyledImg
+        src={footerImg}
+        alt="security-logo-woovi-footer"
+      />
     </FooterStyled>
   );
 }

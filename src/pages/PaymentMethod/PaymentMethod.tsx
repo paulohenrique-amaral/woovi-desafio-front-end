@@ -16,12 +16,12 @@ function PaymentMethod() {
   return (
     <Container maxWidth="lg">
       <Grid container>
-        <Grid
+        {/* <Grid
           item
           xs={ 12 }
         >
           <Header />
-        </Grid>
+        </Grid> */}
         <Grid
           item
           xs={ 12 }
