@@ -1,11 +1,18 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Container, Grid, Box, Typography } from '@mui/material';
 import Context from '../../context/Context';
 import Header from '../../component/Header/Header';
 import PaymentCard from '../../component/PaymentCard/PaymentCard';
 
 function PaymentMethod() {
+  const [selected, setSelected] = useState<number | null>(null);
   const { total, setTotal } = useContext(Context);
+
+  const handleToggle = (value: number) => {
+    console.log('Selecionado:', value);
+    setSelected((currentSelected: number | null) => currentSelected === value ? null : value);
+  };
+
   return (
     <Container maxWidth="lg">
       <Grid container>
@@ -22,22 +29,66 @@ function PaymentMethod() {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            margin: '5px 0',
+            margin: '10px 0',
 
           } }
         >
-          <Typography variant="h6" style={ { fontWeight: 'bold' } }>
+          <Typography variant="h6" style={ { fontWeight: 'bold', marginBottom: '15px' } }>
             João como você quer pagar?
           </Typography>
         </Grid>
-        <Grid item xs={ 12 }>
-          <Box>
-            <PaymentCard />
+        <Grid
+          item
+          xs={ 12 }
+          sx={ { 
+            marginBottom: '40px',
+            display: 'flex',
+            justifyContent: 'center'
+           } }
+        >
+          <Box sx={ { 
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+           } }>
+            <PaymentCard
+              total={ 30500 }
+              numInstallments={ 7 }
+              firstIndex={ 0 }
+              lastIndex={ 1 }
+              bestOption={ 4 }
+              selected={ selected }
+              setSelected={ setSelected }
+              handleToggle={ handleToggle }
+            />
           </Box>
         </Grid>
-        <Grid item xs={ 12 }>
-          <Box>
-            lista parcelas
+        <Grid
+          item
+          xs={ 12 }
+          sx={ { 
+            marginBottom: '40px',
+            display: 'flex',
+            justifyContent: 'center'
+          } }
+        >
+          <Box sx={ { 
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+           } }>
+            <PaymentCard
+              total={ 30500 }
+              numInstallments={ 7 }
+              firstIndex={ 1 }
+              lastIndex={ 7 }
+              bestOption={ 4 }
+              selected={ selected }
+              setSelected={ setSelected }
+              handleToggle={ handleToggle }
+            />
           </Box>
         </Grid>
       </Grid>
