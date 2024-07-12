@@ -47,7 +47,7 @@ type PaymentCardProps = {
   bestOption: number;
   selected: number | null;
   setSelected: React.Dispatch<React.SetStateAction<number | null>>;
-  handleToggle: (value: number) => void;
+  handleToggle: (parcelId: number, value: number) => void;
 };
 
 function PaymentCard({handleToggle, total, numInstallments, firstIndex, lastIndex, bestOption, selected, setSelected}: PaymentCardProps) {
@@ -94,14 +94,14 @@ function PaymentCard({handleToggle, total, numInstallments, firstIndex, lastInde
                   ? 'rgba(3, 214, 157, 0.1)' : theme.palette.background.default,
                 borderRadius: getBorderRadius(index, installmentOptions.length),
               } }
-              onClick={ () => handleToggle(customIndex) }
+              onClick={ () => handleToggle(customIndex, value) }
               >
                 <ListItem
                   sx={ { paddingBottom: '0px' } }
                   secondaryAction={
                     <Checkbox
                       edge="end"
-                      onChange={ () => handleToggle(customIndex) }
+                      onChange={ () => handleToggle(customIndex, value) }
                       checked={ selected === customIndex }
                       inputProps={ { 'aria-labelledby': `checkbox-list-label-${value}` } }
                       icon={ <RadioButtonUncheckedIcon /> }

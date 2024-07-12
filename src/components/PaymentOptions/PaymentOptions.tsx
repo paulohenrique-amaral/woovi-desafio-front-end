@@ -2,13 +2,15 @@ import { useContext, useState } from 'react';
 import { Container, Grid, Box, Typography } from '@mui/material';
 import Context from '../../context/Context';
 import PaymentCard from '../../components/PaymentCard/PaymentCard';
+import PaymentCheckoutMsg from '../PaymentCheckoutMsg/PaymentCheckoutMsg';
 
 function PaymentOptions() {
   const [selected, setSelected] = useState<number | null>(null);
   const { total, setTotal, setPaymentStage } = useContext(Context);
 
-  const handleToggle = (parcelId: number) => {
+  const handleToggle = (parcelId: number, value: number) => {
     console.log('Selecionado:', parcelId);
+    console.log('Parcela:', value);
     setSelected((currentSelected: number | null) => currentSelected === parcelId ? null : parcelId);
     setPaymentStage(2);
   };
@@ -16,7 +18,8 @@ function PaymentOptions() {
   console.log(selected);
   return (
       <Grid container>
-        <Grid
+        <PaymentCheckoutMsg />
+        {/* <Grid
           item
           xs={ 12 }
           sx={ {
@@ -30,7 +33,7 @@ function PaymentOptions() {
           <Typography variant="h6" style={ { fontWeight: 'bold', marginBottom: '15px' } }>
             João como você quer pagar?
           </Typography>
-        </Grid>
+        </Grid> */}
         <Grid
           item
           xs={ 12 }
