@@ -1,27 +1,21 @@
 import { useContext, useState } from 'react';
 import { Container, Grid, Box, Typography } from '@mui/material';
 import Context from '../../context/Context';
-import Header from '../../components/Header/Header';
 import PaymentCard from '../../components/PaymentCard/PaymentCard';
 
 function PaymentMethod() {
   const [selected, setSelected] = useState<number | null>(null);
   const { total, setTotal } = useContext(Context);
 
-  const handleToggle = (value: number) => {
-    console.log('Selecionado:', value);
-    setSelected((currentSelected: number | null) => currentSelected === value ? null : value);
+  const handleToggle = (parcelId: number) => {
+    console.log('Selecionado:', parcelId);
+    setSelected((currentSelected: number | null) => currentSelected === parcelId ? null : parcelId);
   };
 
+  console.log(selected);
   return (
     <Container maxWidth="lg">
       <Grid container>
-        {/* <Grid
-          item
-          xs={ 12 }
-        >
-          <Header />
-        </Grid> */}
         <Grid
           item
           xs={ 12 }
@@ -68,7 +62,7 @@ function PaymentMethod() {
           item
           xs={ 12 }
           sx={ { 
-            marginBottom: '40px',
+            marginBottom: '100px',
             display: 'flex',
             justifyContent: 'center'
           } }

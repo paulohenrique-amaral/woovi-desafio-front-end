@@ -54,8 +54,6 @@ type PaymentCardProps = {
 function PaymentCard({handleToggle, total, numInstallments, firstIndex, lastIndex, bestOption, selected, setSelected}: PaymentCardProps) {
   const singleInstallment = lastIndex <= 1;
   const installmentOptions = calculateInstallments(total, numInstallments);
-
-  console.log('selected:', selected);
   
   return (
     <Box sx={ { position: 'relative', width: '100%', maxWidth: 460 } }>
@@ -76,8 +74,11 @@ function PaymentCard({handleToggle, total, numInstallments, firstIndex, lastInde
         {singleInstallment ? 'Pix' : 'Pix Parcelado'}
       </Box>
       <List sx={ { ...style } } aria-label="opções de parcelamento">
-        {installmentOptions.slice(firstIndex, lastIndex).map((value, index) => (
-          <div key={ value }>
+        {installmentOptions.slice(firstIndex, lastIndex).map((value, index) => {
+          const customIndex = index + firstIndex + 1;
+
+          return (
+            <div key={ customIndex }>
             {index !== 0 && <Divider component="li" />}
             <ButtonBase
               component="div"
@@ -87,22 +88,22 @@ function PaymentCard({handleToggle, total, numInstallments, firstIndex, lastInde
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'flex-start',
-                border: selected === value ? '2px solid' : '1px solid',
-                borderColor: selected === value
+                border: selected === customIndex ? '2px solid' : '1px solid',
+                borderColor: selected === customIndex
                   ? theme.palette.primary.main : theme.palette.background.paper,
-                backgroundColor: selected === value
+                backgroundColor: selected === customIndex
                   ? 'rgba(3, 214, 157, 0.1)' : theme.palette.background.default,
                 borderRadius: getBorderRadius(index, installmentOptions.length),
               } }
-              onClick={ () => handleToggle(value) }
+              onClick={ () => handleToggle(customIndex) }
               >
                 <ListItem
                   sx={ { paddingBottom: '0px' } }
                   secondaryAction={
                     <Checkbox
                       edge="end"
-                      onChange={ () => handleToggle(value) }
-                      checked={ selected === value }
+                      onChange={ () => handleToggle(customIndex) }
+                      checked={ selected === customIndex }
                       inputProps={ { 'aria-labelledby': `checkbox-list-label-${value}` } }
                       icon={ <RadioButtonUncheckedIcon /> }
                       checkedIcon={ <CheckCircleIcon /> }
@@ -112,10 +113,10 @@ function PaymentCard({handleToggle, total, numInstallments, firstIndex, lastInde
                 >
                   <Grid sx={ {display: 'flex', flexDirection: 'column'} }>
                     <Box sx={ { display: 'flex', gap: '.5rem' } }>
-                      <Typography sx={ { fontWeight: 'bold' } }>
-                        {`${index + firstIndex + 1}x`}
+                      <Typography sx={ { fontWeight: 'bold', fontSize: '1.2rem' } }>
+                        {`${customIndex}x`}
                       </Typography>
-                      <Typography>
+                      <Typography sx={ { fontSize: '1.2rem' } }>
                       {value.toLocaleString('pt-BR', {
                         style: 'currency',
                         currency: 'BRL',
@@ -160,7 +161,7 @@ function PaymentCard({handleToggle, total, numInstallments, firstIndex, lastInde
                 </Box>
               </ButtonBase>
           </div>
-        ))}
+          )})}
       </List>
     </Box>
 
