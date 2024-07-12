@@ -5,11 +5,12 @@ import PaymentCard from '../../components/PaymentCard/PaymentCard';
 
 function PaymentOptions() {
   const [selected, setSelected] = useState<number | null>(null);
-  const { total, setTotal } = useContext(Context);
+  const { total, setTotal, setPaymentStage } = useContext(Context);
 
   const handleToggle = (parcelId: number) => {
     console.log('Selecionado:', parcelId);
     setSelected((currentSelected: number | null) => currentSelected === parcelId ? null : parcelId);
+    setPaymentStage(2);
   };
 
   console.log(selected);
