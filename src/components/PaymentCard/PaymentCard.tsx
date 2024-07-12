@@ -1,7 +1,6 @@
 import { useState, useCallback } from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import { Box, Typography, styled, ButtonBase, Grid } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
