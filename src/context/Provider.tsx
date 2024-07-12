@@ -4,10 +4,13 @@ import Context from './Context';
 
 function Provider({ children }: ProviderProps) {
   const [total, setTotal] = useState(0);
+  const [paymentStage, setPaymentStage] = useState<number | null>(null);
 
   const value: ProviderValues = {
     total,
     setTotal,
+    paymentStage,
+    setPaymentStage,
   };
 
   return (
