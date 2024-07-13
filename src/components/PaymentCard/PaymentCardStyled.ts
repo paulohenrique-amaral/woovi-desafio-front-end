@@ -1,4 +1,4 @@
-import { styled, ButtonBase, Box } from '@mui/material';
+import { styled, ButtonBase } from '@mui/material';
 import theme from '../../themes/default';
 
 export const style = {
