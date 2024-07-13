@@ -15,7 +15,7 @@ export type ProviderValues = {
   total: number;
   setTotal: (value: number) => void;
   paymentStage: number | null;
-  setPaymentStage: (value: number | null) => void;
+  setPaymentStage: (value: number) => void;
   checkout: typeCheckout | undefined;
   updateCheckout: (key: keyof typeCheckout, value: any) => void;
 };

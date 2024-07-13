@@ -17,11 +17,11 @@ const initialState: typeCheckout = {
 
 function Provider({ children }: ProviderProps) {
   const [total, setTotal] = useState(0);
-  const [paymentStage, setPaymentStage] = useState<number | null>(null);
+  const [paymentStage, setPaymentStage] = useState<number>(1);
   const [checkout, setCheckout] = useState<typeCheckout>(initialState);
 
   function updateCheckout(key: keyof typeCheckout, value: any) {
-    setCheckout(prev => ({ ...prev, [key]: value }));
+    setCheckout((prev) => ({ ...prev, [key]: value }));
   }
 
   const value: ProviderValues = {
