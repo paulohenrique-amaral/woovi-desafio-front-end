@@ -184,7 +184,7 @@ function PaymentCheckout() {
             <Button
               variant="outlined"
               color='secondary'
-              onClick={ () => setPaymentStage(1)}
+              onClick={ () => setPaymentStage(3)}
             >
               Avançar
             </Button>
