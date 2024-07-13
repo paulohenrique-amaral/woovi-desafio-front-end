@@ -4,5 +4,5 @@
     "source.fixAll.eslint": true,
     "source.fixAll.stylelint": true,
   },
-  "extensions.ignoreRecommendations": false,
+  "extensions.ignoreRecommendations": false
 }
