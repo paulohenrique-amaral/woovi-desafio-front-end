@@ -6,34 +6,22 @@ import PaymentCheckoutMsg from '../PaymentCheckoutMsg/PaymentCheckoutMsg';
 
 function PaymentOptions() {
   const [selected, setSelected] = useState<number | null>(null);
-  const { total, setTotal, setPaymentStage } = useContext(Context);
+  const { total, setPaymentStage, checkout, updateCheckout } = useContext(Context);
 
   const handleToggle = (parcelId: number, value: number) => {
     console.log('Selecionado:', parcelId);
     console.log('Parcela:', value);
     setSelected((currentSelected: number | null) => currentSelected === parcelId ? null : parcelId);
+    updateCheckout('installmentNumber', parcelId);
+    updateCheckout('installmentPrice', value);
     setPaymentStage(2);
   };
 
-  console.log(selected);
+  console.log('checkout:', checkout);
+  console.log('total:', total);
   return (
       <Grid container>
         <PaymentCheckoutMsg />
-        {/* <Grid
-          item
-          xs={ 12 }
-          sx={ {
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            margin: '10px 0',
-
-          } }
-        >
-          <Typography variant="h6" style={ { fontWeight: 'bold', marginBottom: '15px' } }>
-            João como você quer pagar?
-          </Typography>
-        </Grid> */}
         <Grid
           item
           xs={ 12 }
@@ -50,7 +38,7 @@ function PaymentOptions() {
             alignItems: 'center'
            } }>
             <PaymentCard
-              total={ 30500 }
+              total={ total }
               numInstallments={ 7 }
               firstIndex={ 0 }
               lastIndex={ 1 }
@@ -77,7 +65,7 @@ function PaymentOptions() {
             alignItems: 'center'
            } }>
             <PaymentCard
-              total={ 30500 }
+              total={ total }
               numInstallments={ 7 }
               firstIndex={ 1 }
               lastIndex={ 7 }

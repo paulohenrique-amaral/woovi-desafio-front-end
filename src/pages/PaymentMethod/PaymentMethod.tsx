@@ -32,17 +32,18 @@ const slideOutRight = keyframes`
 `;
 
 const BoxStyled = styled(Box)<{ animation: string }>(({ theme, animation }) => ({
-  animation: `${animation} 0.9s linear forwards`,
+  animation: `${animation} 0.9s`,
 }));
 
 function PaymentMethod() {
   const [animation, setAnimation] = useState(slideInRight);
-  const {paymentStage, setPaymentStage, updateCheckout, checkout} = useContext(Context);
+  const {paymentStage, setPaymentStage, updateCheckout, setTotal} = useContext(Context);
   const [showPaymentOptions, setShowPaymentOptions] = useState(true);
   const [showPaymentCheckout, setShowPaymentCheckout] = useState(false);
 
   useEffect(() => {
     updateCheckout('client', 'João');
+    setTotal(30500);
     setPaymentStage(1);
   }, [setPaymentStage]);
 
@@ -53,12 +54,12 @@ function PaymentMethod() {
       setAnimation(slideInRight);
     } else if (paymentStage === 2) {
       setAnimation(slideOutRight);
-      // Aguarde a animação de saída terminar antes de mostrar o próximo componente
+  
       setTimeout(() => {
         setShowPaymentOptions(false);
         setShowPaymentCheckout(true);
-        setAnimation(slideInRight); // Inicia a animação de entrada para o próximo componente
-      }, 900); // O tempo deve coincidir com a duração da animação
+        setAnimation(slideInRight);
+      }, 900);
     }
   }, [paymentStage]);
   
@@ -66,17 +67,30 @@ function PaymentMethod() {
   return (
     <Container maxWidth="lg">
       <Grid container>
-        <Grid item xs={12}>
-          {showPaymentOptions && (
+        <Grid item>
+        {showPaymentOptions && (
+          <Grid
+            item
+            xs={12}
+            md={12}
+            // sx={{ overflow: 'auto' }}
+          >
             <BoxStyled animation={animation}>
               <PaymentOptions />
             </BoxStyled>
-          )}
-          {showPaymentCheckout && (
-            <BoxStyled animation={animation}>
-              <PaymentCheckout />
-            </BoxStyled>
-          )}
+          </Grid>            
+        )}
+        {showPaymentCheckout && (
+          <Grid
+          item
+          xs={12}
+          // md={12}sx={{ maxHeight: '100%' }}
+        >
+          <BoxStyled animation={animation}>
+            <PaymentCheckout />
+          </BoxStyled>
+        </Grid>            
+        )}
         </Grid>
       </Grid>
     </Container>
