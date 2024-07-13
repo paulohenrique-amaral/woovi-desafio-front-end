@@ -8,6 +8,7 @@ export const FooterStyled = styled('footer')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  zIndex: 1000,
 }));
 
 export const StyledImg = styled('img')(({ theme }) => ({
