@@ -1,7 +1,7 @@
 export type typeCheckout = {
   client: string;
-  installmentNumber?: number;
-  installmentPrice?: number;
+  installmentNumber?: number | 1;
+  installmentPrice?: number | 0;
   creditData: {
     name: string;
     cpf: string;

@@ -7,7 +7,7 @@ function PaymentCheckoutMsg() {
   const istallmentPriceConverted = checkout?.installmentPrice?.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
   const msgCheckoutStage1 = `${checkout?.client}, como você quer pagar?`;
   const msgCheckoutStage2 = `${checkout?.client}, pague a entrada de R$ ${istallmentPriceConverted} pelo Pix`;
-  const msgCheckoutStage3 = `${checkout?.client}, pague o restante em ${checkout?.installmentNumber}x no cartão `;
+  const msgCheckoutStage3 = `${checkout?.client}, pague o restante em ${checkout?.installmentNumber ? checkout.installmentNumber - 1 : ''}x no cartão `;
 
   return (
     <Grid
