@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Grid, Box } from '@mui/material';
 import Button from '@mui/material/Button';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
@@ -6,8 +7,11 @@ import qrCode from '../../assets/qrCode.svg';
 import PaymentResumeCheckout from '../PaymentResumeCheckout/PaymentResumeCheckout';
 import { StyledImg } from './PaymentCheckoutStyled';
 import PaymentExpired from '../PaymentExpired/PaymentExpired';
+import { handleCopyClick } from '../../help/helper';
+import SnackBar from '../SnackBar/SnackBar';
 
 function PaymentCheckout() {
+  const [open, setOpen] = useState(false);
   return (
     <Grid container>
       <PaymentCheckoutMsg />
@@ -31,13 +35,21 @@ function PaymentCheckout() {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            marginBottom: '10px',
+            marginBottom: '20px',
           } }
         >
+          <SnackBar
+            open={ open }
+            setOpen={ setOpen }
+          />
           <Button
             variant="contained"
             endIcon={ <FileCopyIcon /> }
             color="secondary"
+            onClick={ () => {
+              handleCopyClick();
+              setOpen(true);
+            } }
           >
             Clique para copiar QR CODE
           </Button>
@@ -48,7 +60,7 @@ function PaymentCheckout() {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            marginBottom: '10px',
+            marginBottom: '20px',
           } }
         >
           <PaymentExpired />
