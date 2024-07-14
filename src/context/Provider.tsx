@@ -1,26 +1,14 @@
 import { useState } from 'react';
-import { ProviderProps, ProviderValues, typeCheckout } from '../types/types';
+import { ProviderProps, ProviderValues, TypeCheckout } from '../types/types';
 import Context from './Context';
-
-const initialState: typeCheckout = {
-  client: '',
-  installmentNumber: 0,
-  installmentPrice: 0,
-  creditData: {
-    name: '',
-    cpf: '',
-    creditCard: '',
-    cvv: '',
-    expirationDate: '',
-  },
-};
+import { initialState } from '../help/helper';
 
 function Provider({ children }: ProviderProps) {
   const [total, setTotal] = useState(0);
   const [paymentStage, setPaymentStage] = useState<number>(1);
-  const [checkout, setCheckout] = useState<typeCheckout>(initialState);
+  const [checkout, setCheckout] = useState<TypeCheckout>(initialState);
 
-  function updateCheckout(key: keyof typeCheckout, value: any) {
+  function updateCheckout(key: keyof TypeCheckout, value: any) {
     setCheckout((prev) => ({ ...prev, [key]: value }));
   }
 

@@ -1,13 +1,14 @@
-export type typeCheckout = {
+export type TypeCheckout = {
   client: string;
   installmentNumber?: number | 1;
   installmentPrice?: number | 0;
-  creditData: {
+  person: {
     name: string;
     cpf: string;
-    creditCard: string;
+    cardNumber: string;
     cvv: string;
     expirationDate: string;
+    value: number;
   };
 };
 
@@ -16,8 +17,8 @@ export type ProviderValues = {
   setTotal: (value: number) => void;
   paymentStage: number | null;
   setPaymentStage: (value: number) => void;
-  checkout: typeCheckout | undefined;
-  updateCheckout: (key: keyof typeCheckout, value: any) => void;
+  checkout: TypeCheckout | undefined;
+  updateCheckout: (key: keyof TypeCheckout, value: any) => void;
 };
 
 export type ProviderProps = {
