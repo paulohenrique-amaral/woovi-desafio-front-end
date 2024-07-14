@@ -28,14 +28,14 @@ Siga as instruções abaixo para configurar e executar o projeto:
 - Clone o repositório em sua máquina local
 
 ```bash
-  git clone git@github.com:paulohenrique-amaral/>
+  git clone git@github.com:paulohenrique-amaral/woovi-desafio-front-end.git
 ```
 
 - Para instalar as dependências.
 
 ```bash
-  cd my-project
-  npm install my-project
+  cd woovi-desafio-front-end
+  npm install
 ```
 
 - Para iniciar o servidor de desenvolvimento.
