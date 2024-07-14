@@ -1,15 +1,13 @@
-import { Grid, Box, Typography } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 import Button from '@mui/material/Button';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import PaymentCheckoutMsg from '../PaymentCheckoutMsg/PaymentCheckoutMsg';
 import qrCode from '../../assets/qrCode.svg';
-import theme from '../../themes/default';
 import PaymentResumeCheckout from '../PaymentResumeCheckout/PaymentResumeCheckout';
 import { StyledImg } from './PaymentCheckoutStyled';
-import { getDateExpired } from '../../help/helper';
+import PaymentExpired from '../PaymentExpired/PaymentExpired';
 
 function PaymentCheckout() {
-  const prazoLimite = getDateExpired();
   return (
     <Grid container>
       <PaymentCheckoutMsg />
@@ -53,12 +51,7 @@ function PaymentCheckout() {
             marginBottom: '10px',
           } }
         >
-          <Typography style={ { color: theme.palette.text.secondary } }>
-            Prazo de pagamento:
-          </Typography>
-          <Typography style={ { fontWeight: 'bold' } }>
-            {prazoLimite}
-          </Typography>
+          <PaymentExpired />
         </Box>
       </Grid>
       <Grid
