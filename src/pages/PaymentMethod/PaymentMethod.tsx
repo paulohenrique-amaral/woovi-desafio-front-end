@@ -5,6 +5,7 @@ import PaymentOptions from '../../components/PaymentOptions/PaymentOptions';
 import PaymentCheckout from '../../components/PaymentCheckout/PaymentCheckout';
 import PaymentFormCreditCard
   from '../../components/PaymentFormCreditCard/PaymentFormCreditCard';
+import CheckoutSucess from '../../components/CheckoutSucess/CheckoutSucess';
 import { slideInRight, slideOutRight, BoxStyled } from './PaymentMethodStyled';
 
 function PaymentMethod() {
@@ -13,6 +14,7 @@ function PaymentMethod() {
   const [showPaymentOptions, setShowPaymentOptions] = useState(true);
   const [showPaymentCheckout, setShowPaymentCheckout] = useState(false);
   const [showPaymentFormCreditCard, setShowPaymentFormCreditCard] = useState(false);
+  const [showSucess, setShowShowSucess] = useState(false);
 
   useEffect(() => {
     updateCheckout('client', 'João');
@@ -38,12 +40,26 @@ function PaymentMethod() {
         setShowPaymentFormCreditCard(true);
         setAnimation(slideInRight);
       }, 900);
+    } else if (paymentStage === 4) {
+      setAnimation(slideOutRight);
+      setTimeout(() => {
+        setShowPaymentFormCreditCard(false);
+        setShowShowSucess(true);
+        setAnimation(slideInRight);
+      }, 900);
     }
   }, [paymentStage]);
 
   return (
     <Container maxWidth="lg">
-      <Grid container>
+      <Grid
+        container
+        sx={ {
+          marginTop: '40px',
+          display: 'flex',
+          justifyContent: 'center',
+        } }
+      >
         <Grid item>
           {showPaymentOptions && (
             <Grid
@@ -73,6 +89,16 @@ function PaymentMethod() {
             >
               <BoxStyled animation={ animation }>
                 <PaymentFormCreditCard />
+              </BoxStyled>
+            </Grid>
+          )}
+          {showSucess && (
+            <Grid
+              item
+              xs={ 12 }
+            >
+              <BoxStyled animation={ animation }>
+                <CheckoutSucess />
               </BoxStyled>
             </Grid>
           )}
