@@ -1,30 +1,65 @@
-# React + TypeScript + Vite
+# Frontend Engineer Challenge - Woovi
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é uma aplicação frontend que simula uma tela de checkout de um produto. A aplicação permite aos usuários escolher o modo de pagamento, concluir o pagamento com detalhes do tipo de pagamento, e preencher um formulário de cadastro do cliente e informações do cartão de crédito. Desenvolvido com foco em dispositivos móveis, o projeto também é responsivo para diferentes tamanhos de tela, garantindo uma experiência de usuário fluida em qualquer dispositivo.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Escolha do modo de pagamento
+- Conclusão do pagamento
+- Formulário de cadastro de cliente e cartão de crédito
+- Responsividade para diferentes dispositivos
+- Efeitos e animações
 
-## Expanding the ESLint configuration
+## :books: Stack utilizada
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- React
+- TypeScript
+- Material UI
+- Context API (estado global)
+- React-Hook-Form & Zod
+- Hooks customizados
+- Styled-components
+- ESLint (configurado conforme boas práticas)
 
-- Configure the top-level `parserOptions` property like this:
+## :rocket: Rodando o Projeto
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+Siga as instruções abaixo para configurar e executar o projeto:
+
+- Clone o repositório em sua máquina local
+
+```bash
+  git clone git@github.com:paulohenrique-amaral/>
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Para instalar as dependências.
+
+```bash
+  cd my-project
+  npm install my-project
+```
+
+- Para iniciar o servidor de desenvolvimento.
+
+```bash
+  npm run dev
+```
+
+## :handshake: Desenvolvedor
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/paulohenrique-amaral">
+        <img src="https://avatars.githubusercontent.com/u/131374458?v=4" width="100px;" alt="Foto de Paulo Amaral no GitHub"/><br>
+        <sub>
+          <b>Paulo Amaral</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
+## 🔗 Links
+
+[![GitHub](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://github.com/paulohenrique-amaral)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](www.linkedin.com/in/paulopp-amaral)

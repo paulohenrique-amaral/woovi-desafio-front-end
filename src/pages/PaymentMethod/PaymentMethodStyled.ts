@@ -26,6 +26,6 @@ export const slideOutRight = keyframes`
   }
 `;
 
-export const BoxStyled = styled(Box)<{ animation: string }>(({ theme, animation }) => ({
+export const BoxStyled = styled(Box)<{ animation: string }>(({ animation }) => ({
   animation: `${animation} 0.9s`,
 }));

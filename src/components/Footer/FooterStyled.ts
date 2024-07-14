@@ -11,7 +11,7 @@ export const FooterStyled = styled('footer')(({ theme }) => ({
   zIndex: 1000,
 }));
 
-export const StyledImg = styled('img')(({ theme }) => ({
+export const StyledImg = styled('img')(() => ({
   width: '260px',
   margin: '20px',
 }));

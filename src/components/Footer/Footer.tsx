@@ -5,7 +5,7 @@ function Footer() {
   return (
     <FooterStyled>
       <StyledImg
-        src={footerImg}
+        src={ footerImg }
         alt="security-logo-woovi-footer"
       />
     </FooterStyled>

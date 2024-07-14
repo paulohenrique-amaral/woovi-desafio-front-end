@@ -1,4 +1,4 @@
-import { Grid, TextField, styled, FormControl } from '@mui/material';
+import { styled } from '@mui/material';
 import theme from '../../themes/default';
 
 export const FormStyled = styled('form')({
@@ -22,7 +22,6 @@ export const style = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  // alignItems: 'center',
   overflow: 'auto',
   top: '50%',
   left: '50%',
