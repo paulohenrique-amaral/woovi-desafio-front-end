@@ -130,7 +130,7 @@ function PaymentResumeCheckout() {
               <Button
                 variant="outlined"
                 color="secondary"
-                onClick={ () => setPaymentStage(3) }
+                onClick={ () => setTimeout(() => setPaymentStage(3), 900) }
               >
                 Avançar
               </Button>
