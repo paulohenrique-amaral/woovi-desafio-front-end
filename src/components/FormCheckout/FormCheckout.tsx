@@ -12,6 +12,7 @@ function FormCheckout() {
     register,
     handleSubmit,
     errors,
+    isSubmitting,
     control,
     handleSubmitForm,
     instalments,
@@ -112,8 +113,9 @@ function FormCheckout() {
         type="submit"
         variant="contained"
         color="secondary"
+        disabled={ isSubmitting }
       >
-        Pagar
+        { isSubmitting ? 'Enviando...' : 'Finalizar Compra' }
       </Button>
     </FormStyled>
   );

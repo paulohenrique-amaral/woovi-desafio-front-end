@@ -24,3 +24,6 @@ export const initialState: TypeCheckout = {
     value: 0,
   },
 };
+export const handleCopyClick = () => {
+  navigator.clipboard.writeText('Codigo copiado para a area de transferencia');
+};

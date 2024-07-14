@@ -14,20 +14,26 @@ function PaymentFormCreditCard() {
         md={ 6 }
       >
         <Box
-          sx={ {
-            marginBottom: '20px',
-          } }
+          sx={ (theme) => ({
+            marginBottom: '10px',
+            [theme.breakpoints.up('md')]: {
+              padding: '20px',
+            },
+          }) }
         >
           <FormCheckout />
         </Box>
         <Box
-          sx={ {
+          sx={ (theme) => ({
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
             marginBottom: '10px',
-          } }
+            [theme.breakpoints.up('md')]: {
+              marginBottom: '100px',
+            },
+          }) }
         >
           <PaymentExpired />
         </Box>
@@ -37,7 +43,15 @@ function PaymentFormCreditCard() {
         xs={ 12 }
         md={ 6 }
       >
-        <PaymentResumeCheckout />
+        <Box
+          sx={ (theme) => ({
+            [theme.breakpoints.up('md')]: {
+              padding: '40px 20px',
+            },
+          }) }
+        >
+          <PaymentResumeCheckout />
+        </Box>
       </Grid>
     </Grid>
   );
